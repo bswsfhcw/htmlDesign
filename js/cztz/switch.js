@@ -205,8 +205,10 @@ function getlineIds(){
 }
 function addSwitch() { //添加开关
 	$('.switchExtend').css("display","none");
+	$('.lineAddFlag').css("display","");
 	if($("#typeAdd").val() ==1){
 		$('.switchExtend').css("display","");
+		$('.lineAddFlag').css("display","none");
 	}
 	var addIndex = layer.open({
 		type: 1,
@@ -220,8 +222,10 @@ function addSwitch() { //添加开关
 			var typeAdd = $("#typeAdd").val();
 			var nameAdd = $("#nameAdd").val();
 			var facIdAdd = $("#facIdAdd").val();
+			var lineAddFlag = $("#lineAddFlag").get(0).checked;
 			var parentIdAdd = $("#parentIdAdd").val();
 			var lineIdAdd = $("#lineIdAdd").val();
+			console.log("lineAddFlag:"+(lineAddFlag==true));
 			if(nameAdd == "") {
 				layer.msg("请输入开关名称", {
 					icon: 2,
@@ -255,7 +259,8 @@ function addSwitch() { //添加开关
 					type: typeAdd,
 					lineId: lineIdAdd,
 					facId: facIdAdd,
-					parentId: parentIdAdd
+					parentId: parentIdAdd,
+					lineAddFlag:lineAddFlag
 				},
 				success: function(data) {
 					if(data.code == 200) {
@@ -280,8 +285,10 @@ function addSwitch() { //添加开关
 
 function changeTypeIdAdd() {
 	$('.switchExtend').css("display","none");
+	$('.lineAddFlag').css("display","");
 	if($("#typeAdd").val() ==1){
 		$('.switchExtend').css("display","");
+		$('.lineAddFlag').css("display","none");
 	}
 }
 function changeFacIdAdd() {
@@ -318,7 +325,7 @@ function updateSwitch() { //修改/查看开关信息跳转页面
 			$("#nameAdd").val(data.switchName);
 			$("#facIdAdd").val(data.facId);
 			$('.switchExtend').css("display","none");
-//			console.log("typeAdd:"+$("#typeAdd").val());
+			$('.lineAddFlag').css("display","none");
 			if($("#typeAdd").val() ==1){
 				$('.switchExtend').css("display","");
 			}

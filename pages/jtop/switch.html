@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -67,7 +68,7 @@
 						<label role="button" id="cjrw_queryBtn" onclick="addSwitch()" class="btn btn-sm btn-success"> <span
 						class="glyphicon glyphicon-plus"></span>&nbsp;添加
 					</label>
-					</div> 
+					</div>
 					<div class="form-group">
 						<label role="button" id="cjrw_queryBtn" onclick="updateSwitch()" class="btn btn-sm btn-success"> <span
 						class="glyphicon glyphicon-pencil"></span>&nbsp;详情
@@ -83,21 +84,21 @@
 					<form class="form-inline" role="form" style="float: left; width: 100%" method="post" id="pg_queryForm" autocomplete="off">
 						<div class="form-group">
 							<label for="height" class="control-label col-sm-4">类型:</label>
-							<div class ="col-sm-5">
-								<select class="form-control" name= "typeQuery" id="typeQuery" onchange="changeConditionQuery()">
-							      <option value="-1">请选择开关类型</option>
-							      <option value="0">出线开关</option>
-							      <option value="1">联络开关</option>
-							    </select>
-			    			</div>
+							<div class="col-sm-5">
+								<select class="form-control" name="typeQuery" id="typeQuery" onchange="changeConditionQuery()">
+									<option value="-1">请选择开关类型</option>
+									<option value="0">出线开关</option>
+									<option value="1">联络开关</option>
+								</select>
+							</div>
 						</div>
 						<div class="form-group">
 							<label for="fac" class="control-label col-sm-4">所属厂站:</label>
-							<div class ="col-sm-5">
-				    			<select class="form-control" name= "facIdQuery" id="facIdQuery" onchange="changeConditionQuery()">
-							      <option value="0">请选择所属厂站...</option>
-							    </select>
-						    </div>
+							<div class="col-sm-5">
+								<select class="form-control" name="facIdQuery" id="facIdQuery" onchange="changeConditionQuery()">
+									<option value="0">请选择所属厂站...</option>
+								</select>
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="input-sm">名称:</label>
@@ -115,15 +116,15 @@
 			</div>
 		</div>
 		<div style="display: none;OVERFLOW-X:hidden;" id="add_switch" align="center">
-			<form class="form-horizontal" role="form" style="vertical-align: middle;margin-top: 15px;"> 
+			<form class="form-horizontal" role="form" style="vertical-align: middle;margin-top: 15px;">
 				<div class="form-group">
 					<label for="height" class="control-label col-sm-4">开关类型:</label>
-					<div class ="col-sm-5">
-						<select class="form-control" name= "typeAdd" id="typeAdd" onchange="changeTypeIdAdd()">
-					      <option value="0">出线开关</option>
-					      <option value="1">联络开关</option>
-					    </select>
-	    			</div>
+					<div class="col-sm-5">
+						<select class="form-control" name="typeAdd" id="typeAdd" onchange="changeTypeIdAdd()">
+							<option value="0">出线开关</option>
+							<option value="1">联络开关</option>
+						</select>
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label front-size">名称:</label>
@@ -133,27 +134,37 @@
 				</div>
 				<div class="form-group">
 					<label for="fac" class="control-label col-sm-4">所属厂站:</label>
-					<div class ="col-sm-5">
-		    			<select class="form-control" name= "facIdAdd" id="facIdAdd" onchange="changeFacIdAdd()">
-					      <option value="0">请选择厂站...</option>
-					    </select>
-				    </div>
+					<div class="col-sm-5">
+						<select class="form-control" name="facIdAdd" id="facIdAdd" onchange="changeFacIdAdd()">
+							<option value="0">请选择厂站...</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group lineAddFlag">
+					<label class="control-label col-sm-4">生成馈线:</label>
+					<div class="col-sm-1">
+						<div class="checkbox">
+							<label >
+							<input id="lineAddFlag" type="checkbox" value="" checked>
+							</label>
+						</div>
+					</div>
 				</div>
 				<div class="form-group switchExtend">
 					<label for="fac" class="control-label col-sm-4">出线开关:</label>
-					<div class ="col-sm-5">
-		    			<select class="form-control" name= "parentIdAdd" id="parentIdAdd" onchange="changeParentIdAdd()">
-					      <option value="0">请选择出线开关...</option>
-					    </select>
-				    </div>
+					<div class="col-sm-5">
+						<select class="form-control" name="parentIdAdd" id="parentIdAdd" onchange="changeParentIdAdd()">
+							<option value="0">请选择出线开关...</option>
+						</select>
+					</div>
 				</div>
 				<div class="form-group switchExtend">
 					<label class="col-sm-4 control-label front-size">所属线路:</label>
-					<div class ="col-sm-5">
-		    			<select class="form-control" name= "lineIdAdd" id="lineIdAdd">
-					      <option value="0">请选择线路...</option>
-					    </select>
-				    </div>
+					<div class="col-sm-5">
+						<select class="form-control" name="lineIdAdd" id="lineIdAdd">
+							<option value="0">请选择线路...</option>
+						</select>
+					</div>
 				</div>
 			</form>
 		</div>
