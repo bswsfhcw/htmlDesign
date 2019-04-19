@@ -2043,7 +2043,7 @@ function buildEmsNode(node, del, childs) {
 }
 //
 function buildDtoNode(node, del, childs) {
-	//	console.log("buildDtoNode:"+(del==0));
+		console.log("buildDtoNode:"+node.text+","+node.entityId);
 	if("no" != node.saveFlag) { //不保存
 		var dto = {};
 		if(del == 1) { //删除
@@ -2396,6 +2396,7 @@ function addChilds(container, childs) {
 			node.id = obj.id;
 			node.nodeType = obj.nodeType;
 			node.entityType = obj.entityType;
+			node.entityId=obj.entityId;
 			node.imgPath = obj.imgPath;
 			if('name' == node.entityType) {
 				node.font = '30px 黑体';
