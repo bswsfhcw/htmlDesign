@@ -1,0 +1,23 @@
+[
+	{
+		"imgPath": "sj.svg",
+		"title": "sj",
+		"id":1,
+		"code":"sj",
+		"name":"三角形"
+		
+	},
+	{
+		"imgPath": "jx.svg",
+		"title": "jx",
+		"id":2,
+		"code":"jx",
+		"name":"矩形"
+	},	{
+		"imgPath": "yd.svg",
+		"title": "yd",
+		"id":3,
+		"code":"yd",
+		"name":"圆点"
+	}
+]

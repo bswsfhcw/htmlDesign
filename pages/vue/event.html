@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Vue 入门 --面向数据编程</title>
+<script type="text/javascript" src="/Vue/vue.js"></script>
+<!--  -->
+</head>
+<body>
+	<div id="root">
+		<div v-on:click="handleClick">{{content}}</div>
+		<div @click="handleClick">{{content}}</div><!--v-on: 简写  -->
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : "#root",
+			/* template:"<h1>hello{{msg}}</h1>", */
+			data : {
+				content:"hello"
+			},
+			methods:{
+				handleClick:function(){
+					this.content = "world";
+				}
+			}
+		})
+	</script>
+</body>
+</html>

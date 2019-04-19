@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<title>部门人员管理</title>
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui_animation.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui_plus.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/insdep_theme_default.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/icon.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../../plugins/jquery-easyui-1.5.1/themes/color.css">
+		<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="../../dist/js/echarts.min.js"></script>
+		<!-- easyui -->
+		<script src="../../plugins/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+		<script src="../../plugins/jquery-easyui-1.5.1/themes/insdep/jquery.insdep-extend.min.js"></script>
+		<script src="../../plugins/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js"></script>
+
+	</head>
+	<style type="text/css">
+		.bi_se {
+			color: red;
+			font-size: 16px
+		}
+		
+		.chart {
+			min-height: 80%;
+			min-width: 100px;
+			width: 99%;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+
+	<body>
+		<button id="ad" onclick="add()">增加</button>
+		<button id="ad" onclick="del()">删加</button>
+		<div class="easyui-layout" style="height: 100%;">
+			<div data-options="region:'center'" style="margin-top: 0px;">
+				<table id="iz"></table>
+			</div>
+		</div>
+		<script>
+			var _startTime, _endTime;
+			$("#iz").datagrid({
+				fit: true,
+				//        toolbar: '#d_tb',
+				loadMsg: '数据加载中,请稍候...',
+				border: false,
+				singleSelect: false,
+				pagination: true,
+				pageSize: 20,
+				rownumbers: true,
+				fitColumns: true,
+				striped: true,
+				SelectOnCheck: true,
+				CheckOnSelect: true,
+				remoteSort: true,
+				nowrap: false,
+				columns: [
+					[{
+						field: "id",
+						title: "id",
+						hidden: false,
+						checkbox: true,
+						align: "center",
+					}, {
+						field: "zz",
+						title: "序号",
+						align: "center",
+						width: 100,
+						formatter: function(value, rowData, rowIndex) {
+							return rowIndex+1;
+						}
+					}, {
+						field: "sourceIp",
+						title: "源IP",
+						align: "center",
+						width: 100,
+					}, {
+						field: "sourceMacaddress",
+						title: "源MAC",
+						align: "center",
+						width: 100,
+					}, {
+						field: "destinationIp",
+						title: "目的IP",
+						align: "center",
+						width: 100,
+					}]
+				],
+				onDblClickRow: function(rowIndex, rowData) {
+
+				}
+			});
+		</script>
+		<script>
+			var jsonstr = '{"total":1,"rows":[{"id":"1","sourceIp":"M000005","sourceMacaddress":"检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备检测设备","destinationIp":3},{"id":"1","sourceIp":"M000005","sourceMacaddress":"检测设备","destinationIp":3}]}';
+			var data = $.parseJSON(jsonstr); 
+			$('#iz').datagrid('loadData', data); //将数据绑定到datagrid
+		</script>
+		<script>
+			console.log($('#iz'));
+		</script>
+		<script>
+			function add(){
+			}
+			function del(){
+				
+			}
+		</script>
+	</body>
+
+</html>

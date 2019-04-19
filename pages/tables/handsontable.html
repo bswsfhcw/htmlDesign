@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Mono Test</title>
+		<link rel="stylesheet" href="../../plugins/handsontable/handsontable.full.css">
+		<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="../../plugins/handsontable/handsontable.full.min.js"></script>
+		<!--<script type="text/javascript" src="../js/bootstrap-colorpicker.js"></script>-->
+		<script type="text/javascript"> 
+			var copy = [];
+			function load() {
+				var example = document.getElementById('example1');
+				var hot = new Handsontable(example, {
+					data: Handsontable.helper.createSpreadsheetData(100, 100),
+					contextMenu: {
+						items: {
+							"row_above": {
+								name: '向上插入一行',
+							},
+							"row_below": {
+								name: '向下插入一行',
+							},
+							"remove_row": {
+								name: '删除行',
+							},
+							"hsep1": "---------",
+							"undo": {
+								name: '撤销'
+							},
+							"redo": {
+								name: '重做'
+							},
+							"copy": {
+								name: '复制',
+								callback: function() {
+									copy = this.getSelected()[0];
+//									alert("请先选择单元格..." + copy);
+								}
+							},
+							"cut": {
+								name: '剪切',
+								callback: function() {
+									copy = this.getSelected()[0];
+//									alert("请先选择单元格..." + copy);
+								}
+							},
+							'past': {
+								name: '粘贴',
+								callback: function() {//安全考虑 浏览器无法直接获取系统剪切板数据,变相处理
+									var past = this.getSelected()[0];
+									if(copy[2] - copy[0] != past[2] - past[0]) {
+										alert("粘贴区域和复制区域行数不匹配");
+									} else if(copy[3] - copy[1] != past[3] - past[1]) {
+										alert("粘贴区域和复制区域列数不匹配");
+									} else {
+										for(var i = 0; i < past[2]-past[0]+1; i++) {
+											for(var j = 0; j < past[3]-past[1]+1; j++) { 
+												this.getCell(past[0]+i,past[1]+j).innerHTML=this.getCell(copy[0]+i,copy[1]+j).innerHTML;
+											} 
+										}
+									}
+								}
+							}
+						}
+					},
+					width: 884,
+					height: 620,
+					colWidths: 100,
+					rowHeights: 23,
+					rowHeaders: true,
+					colHeaders: true,
+				});
+				//一、获取行数、列数:
+				var count_col = hot.countCols(); //获取列数 
+				var count_row = hot.countRows(); //获取行数
+				//				console.log(count_col + "," + count_row);
+				//				三、获取每个单元格的数据: 
+				var td = hot.getCell(1, 1, true);
+				//				console.log("td:" + td.innerHTML);
+				//					hot.scrollViewportTo(50-5,20,false,false); 
+				for(var i = 0; i < 10; i++) {
+					var rangeCell = hot.getCell(0, i);
+					$(rangeCell).css({
+						"background": "red"
+					});
+					var cellClass = $(rangeCell)[0].className;
+					hot.setCellMeta(0, i, "bkColor", "red");
+				}
+
+			}
+		</script>
+	</head>
+
+	<body onload='load()'>
+		<div id="example1">
+		</div>
+	</body>
+
+</html>

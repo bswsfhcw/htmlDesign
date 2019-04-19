@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>v-if v-show v-for</title>
+<script type="text/javascript" src="/Vue/vue.js"></script>
+<!--  -->
+</head>
+<body>
+	<div id="root">
+		<!-- 
+		v-if: false时 删除dom元素 (操作不频繁时)
+		v-show: false时 设置dom元素display：none(操作频繁时 效率较高)
+		 -->
+		<div v-if="show">hello world1</div>
+		<div v-else>hello world1else</div>
+		<div v-show="show">hello world2</div>
+		
+		<!-- v-else 元素必须紧跟在带 v-if 或者 v-else-if 的元素的后面，否则它将不会被识别。 -->
+		<input v-model="type"/>
+		<div v-if="type === 'A'">A</div>
+		<div v-else-if="type === 'B'">B</div>
+		<div v-else-if="type === 'C'">C</div>
+		<div v-else>Not A/B/C</div>
+
+		<button @click="handleClick">toggle</button>
+		<!--v-for 循环展示   增加:key 提高效率   防止重复 使用index   实际上分页 刷新等 使用index也存在问题-->
+		<ul>
+			<li v-for="item of list" :key="index">{{item}}</li>
+		</ul>
+		<ul>
+			<li v-for="(item,index) of list" :key="index">{{item}}</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el : "#root",
+			data : {
+				show : true,
+				list : [ 1, 2, 3, 4 ],
+				type :''
+			},
+			methods : {
+				handleClick : function() {
+					this.show = !this.show
+				}
+			}
+
+		})
+	</script>
+</body>
+</html>

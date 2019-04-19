@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<title>部门人员管理</title>
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui_animation.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui_plus.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/insdep_theme_default.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/icon.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../../plugins/jquery-easyui-1.5.1/themes/color.css">
+		<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="../../dist/js/echarts.min.js"></script>
+		<!-- easyui -->
+		<script src="../../plugins/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+		<script src="../../plugins/jquery-easyui-1.5.1/themes/insdep/jquery.insdep-extend.min.js"></script>
+		<script src="../../plugins/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js"></script>
+
+	</head>
+	<style type="text/css">
+		.bi_se {
+			color: red;
+			font-size: 16px
+		}
+		
+		.chart {
+			min-height: 80%;
+			min-width: 100px;
+			width: 99%;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+
+	<body>
+		<div class="easyui-layout" style="height:100%;">
+			<div data-options="region:'north'" style="height:280px;overflow: hidden;" title="预警月分布"> 
+				<div class="chart" id="chartAlarmMonth"></div>
+			</div>
+			<div data-options="region:'center',iconCls:'icon-ok'" title="" style="padding:5px;height:350px">
+				<div class="easyui-layout" data-options="fit:true">
+					<div data-options="region:'north',split:true,border:false" style="display: flex; justify-content: flex-start; height: auto;margin:5px;align-items: center;align-content: center;overflow: hidden ">
+						<span style="color: #43546c;font-weight: bold;">起始时间：</span><input type="text" id="startTime" class="easyui-datebox" style="margin-top: -10px;height: 25px;" />
+						<span style="color: #43546c;font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;结束时间：</span><input type="text" id="endTime" class="easyui-datebox" style="margin-top: -10px;height: 25px;" />
+						<span>&nbsp;&nbsp;&nbsp;</span>
+						<a style="width: 60px;height: 20px;background-color: #3c8dbc;color: white;text-align: center;font-size: 14px;border-radius: 10px;border:1px solid #2aaae3" href="javascript:search104all(0);">查询</a>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					</div>
+					<div data-options="region:'west',split:true" title="预警类型分布" style="width:33%">
+						<div class="chart" id="chartAlarmType"></div>
+					</div>
+					<div data-options="region:'east',split:true" title="预警主机TOP10统计" style="width:67%">
+						<div class="chart" id="chartAlarmIp"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

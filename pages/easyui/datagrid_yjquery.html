@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<title>部门人员管理</title>
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui_animation.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui_plus.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/insdep_theme_default.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/icon.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../../plugins/jquery-easyui-1.5.1/themes/color.css">
+		<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="../../dist/js/echarts.min.js"></script>
+		<!-- easyui -->
+		<script src="../../plugins/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+		<script src="../../plugins/jquery-easyui-1.5.1/themes/insdep/jquery.insdep-extend.min.js"></script>
+		<script src="../../plugins/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js"></script>
+
+	</head>
+	<style type="text/css">
+		.bi_se {
+			color: red;
+			font-size: 16px
+		}
+		
+		.chart {
+			min-height: 80%;
+			min-width: 100px;
+			width: 99%;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+
+	<body>
+		<div id="win" closed="true" zIndex=-1 class="easyui-window" title="预警列表" style="width:90%;height:70%" data-options="iconCls:'icon-save',modal:true">
+			<div class="easyui-layout" style="height: 100%;">
+			<div data-options="region:'north',split:true,border:false" style="height:25px: ; display: flex; justify-content: flex-start; height: auto; margin: 10px; align-items: center; align-content: center; overflow: hidden">
+				<!--   预留 从redis取 -->
+				<!-- <a style="margin-right:15px; width: 60px;height: 20px;background-color: #3c8dbc;color: white;text-align: center;font-size: 14px;border-radius: 10px;border:1px solid #2aaae3" href="javascript:searchChartData(1);">实时</a>
+					<a style="margin-right:15px; width: 60px;height: 20px;background-color: #3c8dbc;color: white;text-align: center;font-size: 14px;border-radius: 10px;border:1px solid #2aaae3" href="javascript:searchChartData(2);">昨天</a>
+					<a style="margin-right:15px; width: 60px;height: 20px;background-color: #3c8dbc;color: white;text-align: center;font-size: 14px;border-radius: 10px;border:1px solid #2aaae3" href="javascript:searchChartData(3);">最近7天</a>
+					<a style="margin-right:15px; width: 60px;height: 20px;background-color: #3c8dbc;color: white;text-align: center;font-size: 14px;border-radius: 10px;border:1px solid #2aaae3" href="javascript:searchChartData(4);">本月</a> -->
+				<span style="color: #43546c; font-weight: bold;">起始时间：</span><input type="text" id="startTime" class="easyui-datebox" style="margin-top: 0px; height: 25px;" /> <span style="color: #43546c; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;结束时间：</span><input type="text" id="endTime" class="easyui-datebox" style="margin-top: -10px; height: 25px;" /> <span>&nbsp;&nbsp;&nbsp;</span>
+				<a style="width: 60px; height: 20px; background-color: #3c8dbc; color: white; text-align: center; font-size: 14px; border-radius: 10px; border: 1px solid #2aaae3" href="javascript:searchChartData(0);">查询</a> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span style="color: #43546c; font-weight: bold;">预警类型：</span>
+				<input id="alarmType" class="easyui-combobox" name="alarmType" />
+			</div>
+			<div data-options="region:'center'" style="margin-top: 0px;">
+				<table id="iz"></table>
+			</div>
+		</div>
+		</div>
+		<div class="easyui-layout" style="height: 100%;">
+			<div data-options="region:'north',split:true,border:false" style="height:25px: ; display: flex; justify-content: flex-start; height: auto; margin: 10px; align-items: center; align-content: center; overflow: hidden">
+				<!--   预留 从redis取 -->
+				<!-- <a style="margin-right:15px; width: 60px;height: 20px;background-color: #3c8dbc;color: white;text-align: center;font-size: 14px;border-radius: 10px;border:1px solid #2aaae3" href="javascript:searchChartData(1);">实时</a>
+					<a style="margin-right:15px; width: 60px;height: 20px;background-color: #3c8dbc;color: white;text-align: center;font-size: 14px;border-radius: 10px;border:1px solid #2aaae3" href="javascript:searchChartData(2);">昨天</a>
+					<a style="margin-right:15px; width: 60px;height: 20px;background-color: #3c8dbc;color: white;text-align: center;font-size: 14px;border-radius: 10px;border:1px solid #2aaae3" href="javascript:searchChartData(3);">最近7天</a>
+					<a style="margin-right:15px; width: 60px;height: 20px;background-color: #3c8dbc;color: white;text-align: center;font-size: 14px;border-radius: 10px;border:1px solid #2aaae3" href="javascript:searchChartData(4);">本月</a> -->
+				<span style="color: #43546c; font-weight: bold;">起始时间：</span><input type="text" id="startTime" class="easyui-datebox" style="margin-top: 0px; height: 25px;" /> <span style="color: #43546c; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;结束时间：</span><input type="text" id="endTime" class="easyui-datebox" style="margin-top: -10px; height: 25px;" /> <span>&nbsp;&nbsp;&nbsp;</span>
+				<a style="width: 60px; height: 20px; background-color: #3c8dbc; color: white; text-align: center; font-size: 14px; border-radius: 10px; border: 1px solid #2aaae3" href="javascript:searchChartData(0);">查询</a> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span style="color: #43546c; font-weight: bold;">预警类型：</span>
+				<input id="alarmType" class="easyui-combobox" name="alarmType" />
+			</div>
+			<div data-options="region:'center'" style="margin-top: 0px;">
+				<table id="iz"></table>
+			</div>
+		</div>
+		<script>
+			var _startTime, _endTime;
+			$("#iz").datagrid({
+				url: "../gk/selectAlarms.do",
+				queryParams: {
+					startTime: _startTime,
+					endTime: _endTime,
+					alarmCode: "KW_IMORE" //跳帧告警
+				},
+				fit: true,
+				//        toolbar: '#d_tb',
+				loadMsg: '数据加载中,请稍候...',
+				border: false,
+				singleSelect: false,
+				pagination: true,
+				pageSize: 20,
+				rownumbers: true,
+				fitColumns: true,
+				striped: true,
+				SelectOnCheck: true,
+				CheckOnSelect: true,
+				remoteSort: true,
+				nowrap: true,
+				columns: [
+					[{
+						field: "id",
+						title: "id",
+						hidden: true,
+						checkbox: true,
+						align: "center"
+					}, {
+						field: "sourceIp",
+						title: "源IP",
+						align: "center"
+					}, {
+						field: "sourceMacaddress",
+						title: "源MAC",
+						align: "center"
+					}, {
+						field: "destinationIp",
+						title: "目的IP",
+						align: "center"
+					}, {
+						field: "destinationMacaddress",
+						title: "目的MAC",
+						align: "center"
+					}, {
+						field: "createTime",
+						title: "入库时间",
+						align: "center",
+						formatter: function(value, row) {
+							return formatDateTime(value);
+						}
+					}, {
+						field: "updateTime",
+						title: "最近更新时间",
+						align: "center",
+						formatter: function(value, row) {
+							return formatDateTime(value);
+						}
+					}, {
+						field: "content",
+						title: "最新描述信息",
+						align: "center"
+					}, {
+						field: "alarmCount",
+						title: "次数",
+						align: "center",
+						formatter: function(value, row, index) {
+							return '<span  title=' + '同一个IP一秒内多次跳帧存一条记录' + '>' + value + '</span>'
+						}
+
+					}]
+				],
+				onDblClickRow: function(rowIndex, rowData) {
+
+				}
+			});
+		</script>
+		<script>
+			$('#alarmType').combobox({
+				url: '../../json/alarmType.json', //对应的ashx页面的数据源
+				method: 'get',
+				valueField: 'CID', //绑定字段ID 
+				textField: 'CNAME', //绑定字段Name
+				panelHeight: 'auto', //自适应
+				multiple: true,
+				formatter: function(row) {
+					var opts = $(this).combobox('options');
+					return '<input type="checkbox" class="combobox-checkbox" id="' + row[opts.valueField] + '">' + row[opts.textField]
+				},
+				onShowPanel: function() {
+					var data = $(this).combobox('getData');
+					console.log("onShowPanel--" + data);
+					var opts = $(this).combobox('options');
+					var target = this;
+					var values = $(target).combobox('getValues');
+					$.map(values, function(value) {
+						var el = opts.finder.getEl(target, value);
+						el.find('input.combobox-checkbox')._propAttr('checked', true);
+					})
+				},
+				onLoadSuccess: function() {
+					var data = $(this).combobox('getData');
+					console.log("onLoadSuccess--" + JSON.stringify(data));
+					$(this).combobox("select", data[0]["CID"]);
+					var opts = $(this).combobox('options');
+					var target = this;
+					var values = $(target).combobox('getValues');
+					$.map(values, function(value) {
+						var el = opts.finder.getEl(target, value);
+						el.find('input.combobox-checkbox')._propAttr('checked', true);
+					})
+				},
+				onSelect: function(row) {
+					var opts = $(this).combobox('options');
+					var el = opts.finder.getEl(this, row[opts.valueField]);
+					el.find('input.combobox-checkbox')._propAttr('checked', true);
+				},
+				onUnselect: function(row) {
+					var opts = $(this).combobox('options');
+					var el = opts.finder.getEl(this, row[opts.valueField]);
+					el.find('input.combobox-checkbox')._propAttr('checked', false);
+				}
+			});
+		</script>
+		<script>
+			function searchChartData() {
+				$('#win').window('open'); // open a window
+				
+			}
+		</script>
+	</body>
+
+</html>

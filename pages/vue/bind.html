@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>属性绑定和双向数据绑定</title>
+<script type="text/javascript" src="../../plugins/Vue/vue.min.js"></script>
+<!--  -->
+</head>
+<body>
+	
+	<div id="root">
+		<div v-bind:title="title">hello world</div><!-- 属性绑定:v-bind: 或者 : -->
+		<!-- 使用模板指令后""里面是一个js表达式 不再是一个字符串 -->
+		<div :title="'del is' +title">hello world</div>
+		<!-- v-bind: 简写 : -->
+		<input :value="content" />
+		<div>
+			<input v-model="content" />
+			<!--双向数据绑定: 数据决定页面    页面决定数据 -->
+		</div>
+		<div>{{content}}</div>
+		<!--双向数据绑定: 数据决定页面    页面决定数据 -->
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el : "#root",
+			data : {
+				title : "this is hello world",
+				content : "this is content"
+			}
+		})
+	</script>
+</body>
+</html>

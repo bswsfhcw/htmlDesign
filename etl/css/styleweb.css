@@ -1,0 +1,44 @@
+*{list-style: none;}
+.button{ outline: none; cursor: pointer; width: 66px; padding: 4px 18px; line-height: 26px; border: 1px solid #3c8dbd; color: #3c8dbd; box-sizing: border-box;  border-radius: 20px; background: #fff; margin-right:5px;}
+.button:hover,.dialog-button .l-btn:hover{ background-color: #0ec2b6; color: #fff;}
+a{font-color:red;}
+.menu ul{padding:0; margin: 0; width: 180px; height: 40px; line-height: 40px; background-color: #e3faf8; text-align: center; font-size: 16px; border-bottom: 2px solid #0b9b91; box-sizing: border-box;}
+.menu ul span img{ vertical-align: middle; margin-right: 10px;}
+.menu ul li{width: 180px; height: 40px; line-height: 40px; border-bottom: 1px solid #CCCCCC; box-sizing: border-box;}
+.menu ul li span{margin-left: -30px;}
+.menu ul li:hover{ background-color: #40cfc5; cursor: pointer; color:#fff!important;}
+.button_2{ width: 86px; height: 30px; display: inline-block;line-height: 30px; background-color: #0dbaaf; color: #fff; border-radius: 20px; padding: 0 6px; cursor: pointer;}
+.button_2 img{vertical-align: middle; margin-right: 10px; margin-left: 10px;}
+.top{ background-color: #e3faf8; height: 30px; line-height: 30px; border: 1px solid #ccc; box-sizing: border-box;}
+.tabbox{ border: 1px solid #ccc; display: inline-block; padding: 10px; background-image: url(../images/tabbg.png); background-size: 100% 100%; margin-right: 2px;}
+
+/* ����css��ʽ */
+/* #d_tb a{margin-right:8px!important; background:red!important;} */
+.dialog-button{text-align:center}
+.dialog-button .l-btn{width:70px;color:#3c8dbd;margin-right:8px; border:1px solid #3c8dbd;}
+.button1{ outline: none; cursor: pointer; width: 72px; padding: 8px 22px; line-height: 32px; border: 1px solid #3c8dbd; color: #3c8dbd; box-sizing: border-box;  background: #fff; margin-right:5px;border-radius:4px;}
+.button1:hover,.dialog-button .l-btn:hover{ background-color: #0ec2b6; color: #fff;}
+
+#modify{background-image: url('../images/modify_blue.png') ;height:16px;width:16px; display: inline-block;}
+#del{background: url('../images/delete_blue.png') no-repeat;height:16px;width:16px; display: inline-block;}
+#sync{background: url('../images/sync_blue.png') no-repeat;height:16px;width:16px; display: inline-block;margin-left: -5px;}
+#sync_gray{background: url('../images/sync_gray.png') no-repeat;height:16px;width:16px; display: inline-block;margin-left: -5px;}
+.tb_tit{text-align:right;}
+
+.tree-node-hover, .tree-node-selected {background: #87CEFA;}
+
+.win_sound{ float:right; margin-left:10px;margin-top: 8px;width:24px; height:24px;background:url(../images/sound_open.png) no-repeat;}
+
+
+.label-db {
+    color: white;
+    padding:10px;
+    margin: 10px;
+    border: 1px white solid;
+    border-radius: 10px;
+    background-color: #337ab7;
+}
+.label-db[href]:hover,
+.label-db[href]:focus {
+    background-color: #286090;
+}

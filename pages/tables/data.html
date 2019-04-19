@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>AdminLTE 2 | Buttons</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+		<!-- Pace -->
+		<link rel="stylesheet" href="../../plugins/pace-master/themes/blue/pace-theme-flash.css">
+		<script type="text/javascript" src="../../plugins/pace-master/pace.min.js"></script>
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css">
+		<!-- Ionicons -->
+		<link rel="stylesheet" href="../../dist/css/ionicons.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+		<!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+		<link rel="stylesheet" href="../../dist/css/skins/all-skins.min.css">
+		<script type="text/javascript" src="../../plugins/Vue/vue.js"></script>
+		<!-- jQuery 2.2.3 -->
+		<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<!-- Bootstrap 3.3.6 -->
+		<script src="../../bootstrap/js/bootstrap.min.js"></script>
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="hold-transition skin-blue">
+		<section class="content" id="root">
+			<!--
+		      现在我们为每个 todo-item 提供 todo 对象
+		      todo 对象是变量，即其内容可以是动态的。
+		      我们也需要为每个组件提供一个“key”，稍后再
+		      作详细解释。
+		    -->
+			<div class="row mx-auto w-75">
+				<div class="col-md-6">
+					<div class="btn-group">
+						<button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#myModal">新增</button>
+						<button type="button" class="btn btn-outline-primary btn-sm" @click="editRow">编辑</button>
+					</div>
+					<button type="button" class="btn btn-outline-warning btn-sm" @click="delRows">删除</button>
+				</div>
+				<div class="col-md-6">
+					<div class="input-group">
+						<input type="text" class="form-control input-group-sm" placeholder="输入设备编号进行搜索">
+						<span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                    </span>
+					</div>
+				</div>
+			</div>
+			<div class="row mx-auto w-75">
+				<div class="col-md-12">
+					<table class="table table-hover table-success">
+						<thead class="thead-default">
+							<tr>
+								<th><input type="checkbox"></th>
+								<th>序号</th>
+								<th>设备编号</th>
+								<th>设备名称</th>
+								<th>设备状态</th>
+								<th>采购日期</th>
+								<th>设备管理员</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(facility,index) of facilities" :key="index">
+								<td><input type="checkbox" :value="index" v-model="checkedRows"></td>
+								<td>{{index+1}}</td>
+								<td>{{facility.code}}</td>
+								<td>{{facility.name}}</td>
+								<td>{{facility.states}}</td>
+								<td>{{facility.date}}</td>
+								<td>{{facility.admin}}</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</div>
+			</div>
+			<div class="row mx-auto w-75">
+				
+			</div>
+			<div class="modal fade" id="myModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">新增设备信息</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-3">设备编号：</div>
+								<div class="col-md-9">
+									<input class="form-control" placeholder="设备编号" v-model="newRow.code">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">设备名称：</div>
+								<div class="col-md-9">
+									<input class="form-control" placeholder="设备名称" v-model="newRow.name">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">设备状态：</div>
+								<div class="col-md-9">
+									<input class="form-control" placeholder="设备状态" v-model="newRow.states">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">采购日期：</div>
+								<div class="col-md-9">
+									<input class="form-control" placeholder="采购日期" v-model="newRow.date">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">管理员：</div>
+								<div class="col-md-9">
+									<input class="form-control" placeholder="管理员" v-model="newRow.admin">
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-primary" data-dismiss="modal" @click="addRow">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script>
+			var datas = [{
+					code: "A2017-001",
+					name: "3800充电器",
+					states: "正常",
+					date: "2017-01-21",
+					admin: "andy"
+				},
+				{
+					code: "A2017-002",
+					name: "Lenovo Type-c转接器",
+					states: "正常",
+					date: "2017-01-21",
+					admin: "zero"
+				}
+			];
+
+			var vm = new Vue({
+				el: "#root",
+				data: {
+					checkAll: false,
+					checkedRows: [],
+					facilities: [],
+					newRow: {}
+				},
+				methods: {
+					addRow: function() {
+						this.facilities.push(this.newRow);
+						this.newRow = {};
+					},
+					editRow: function() { //编辑表格数据
+						if(this.checkedRows.length <= 0) {
+							alert("您未选择需要编辑的数据");
+							return false;
+						}
+						this.newRow = this.checkedRows[0];
+						$('#myModal').modal('show');
+					},
+					delRows: function() {
+						if(this.checkedRows.length <= 0) {
+							alert("您未选择需要删除的数据");
+							return false;
+						}
+						if(!confirm("您确定要删除选择的数据吗？" + this.checkedRows.length)) {
+							return false;
+						}
+						for(var i = 0; i < this.checkedRows.length; i++) {
+							var checkedRowIndex = this.checkedRows[i];
+							this.facilities = $.grep(this.facilities, function(facility, j) {
+								return j != checkedRowIndex;
+							});
+						}
+						this.checkedRows = [];
+					},
+					fetchData: function() {
+						var _self = this;
+						$.ajax({
+							url: 'http://localhost:8088/deviceController/buildData',
+							type: 'POST', //GET、PUT、DELETE
+							async: true, //是否异步
+							data: {
+
+							},
+							timeout: 5000, //超时时间
+							dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
+							beforeSend: function(xhr) {
+								console.log("beforeSend");
+							},
+							success: function(data, textStatus, jqXHR) {
+								console.log("success" + data);
+								_self.facilities = data;
+							},
+							error: function(xhr, textStatus) {
+								console.log("error");
+							},
+							complete: function() {
+								console.log("complete");
+							}
+						})
+					}
+				},
+				mounted: function() {
+					this.fetchData();
+				}
+			});
+		</script>
+	</body>
+
+</html>

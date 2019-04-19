@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>计算属性和侦听器</title>
+<script type="text/javascript" src="/Vue/vue.js"></script>
+<!--  -->
+</head>
+<body>
+	<div id="root">
+		姓:<input v-model="fistName" />名:<input v-model="lastName" />
+		<div>{{fistName}}{{lastName}}</div>
+		<div>{{fullName}}</div>
+		<div>{{count}}</div>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el : "#root",
+			data : {
+				fistName : "",
+				lastName : "",
+				count : 0
+			},
+			/* 计算属性  在模板中放入太多的逻辑会让模板过重且难以维护 所以，对于任何复杂逻辑，你都应当使用计算属性。*/
+			computed : {
+				fullName : function() {
+					return this.fistName + " " + this.lastName;
+				}
+			},
+			watch : {/* 侦听   Vue 通过 watch 选项提供了一个更通用的方法，来响应数据的变化*/
+				/* fistName : function(){
+					this.count++
+				},
+				lastName : function(){
+					this.count++
+				}, */
+				fullName : function() {
+					this.count++
+				}
+			}
+		})
+	</script>
+</body>
+</html>

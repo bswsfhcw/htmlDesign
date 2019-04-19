@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>AdminLTE 2 | Advanced form elements</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css">
+		<!-- daterange picker -->
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap-datepicker.min.css">
+		<style>
+			.chart {
+				height: 280px;
+				min-widthwidth: 100px;
+				margin: 0px;
+				padding: 0px;
+			}
+		</style>
+	</head>
+
+	<body class="hold-transition skin-blue sidebar-mini">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+       			 <small></small>
+      		</h1>
+		</section>
+		<!-- Main content -->
+		<section class="content">
+			<div class="row" style="border:1px solid #ddd;margin-top: 5px;">
+				<div class="col-md-12">
+					<div class="chart" id="chartTrend"></div>
+				</div>
+			</div>
+			</div>
+			</div>
+			</span>
+			</div>
+		</section>
+		<!-- /.content -->
+
+		<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="../../bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../dist/js/echarts.min.js"></script>
+		<script src="../../bootstrap/js/bootstrap-datepicker.min.js"></script>
+		<script>
+			optionTrend = {
+				title: {
+					text: ''
+				},
+				tooltip: {
+					trigger: 'axis'
+				},
+				legend: {
+					//					data: ['所有类型', 'U型', 'I型', 'S型']
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				toolbox: {
+					feature: {
+						saveAsImage: {}
+					}
+				},
+				xAxis: {
+					type: 'category',
+					boundaryGap: false,
+					data: [] 
+				},
+				yAxis: {
+					type: 'value'
+				},
+				series: []
+			};
+		</script>
+		<script>
+			var byId = function(id) { 
+				return document.getElementById(id);
+			};
+			var chartTrend = echarts.init(byId('chartTrend'));
+			var serLineItem = function () {
+			    return {
+			        name: '',
+			        type: 'line',
+			        smooth: true,
+			        data: []
+			    }
+			};
+			var newData = [];
+    		var legendData = [];
+			$.ajax({    
+				type: 'get',
+			    url: 'data.json', //请求数据的地址
+			    dataType: "json",
+			     //返回数据形式为json
+			    success: function(result) {
+				 	$.each(result, function (index, item) {
+//				 		alert(item);
+						var lineItem = new serLineItem();
+				        lineItem.data = item;
+				        newData.push(lineItem);
+//				 		optionTrend.series[index].data=item;
+				 		
+           			 });
+					optionTrend.series=newData;
+					chartTrend.setOption(optionTrend); 
+
+				},
+			    error: function(errorMsg) {       //请求失败时执行该函数
+					alert("图表请求数据失败!");      
+				}  
+			});
+		</script>
+		<script>
+			$('#qBeginTime').datepicker({
+				todayBtn: "linked",
+				autoclose: true,
+				todayHighlight: true,
+				endDate: new Date()
+			}).on('changeDate', function(e) {
+				var startTime = e.date;
+				$('#qEndTime').datepicker('setStartDate', startTime);
+			});
+			//结束时间：
+			$('#qEndTime').datepicker({
+				todayBtn: "linked",
+				autoclose: true,
+				todayHighlight: true,
+				endDate: new Date()
+			}).on('changeDate', function(e) {
+				var endTime = e.date;
+				$('#qBeginTime').datepicker('setEndDate', endTime);
+			});
+		</script>
+	</body>
+
+</html>

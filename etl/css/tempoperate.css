@@ -1,0 +1,71 @@
+﻿/**左侧**/
+.case-cont{
+	padding: 0;
+}
+
+.sidebar li{
+    padding-left: 14px;
+    height: 32px;
+    line-height: 32px;  
+    cursor: pointer; 
+}
+
+.sidebar li a{
+	color: #444;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.sidebar li.cur,.sidebar li:hover{
+	background: #45b2f3;
+}
+
+.sidebar i {margin-right: 10px;float:right;margin-top:10px;width: 14px; height: 14px; background: url(../../resources/images/process_slide1_icons.png) -71px -5px;}
+.test i {float:right;width: 16px; height: 16px; background: url(../../resources/images/process_slide1_icons.png) -40px -4px; cursor: pointer;}
+
+/**右侧**/
+.mod{
+	/* margin-bottom: 10px; */
+	padding: 14px 16px 5px;
+}
+.mod h1{
+	margin-bottom: 5px;
+	line-height: 14px;
+	font-size: 14px;
+	font-weight: bold;	
+}
+
+.mod1{
+	position: relative;
+}
+
+.binfo table th{
+	padding: 0;
+	/*font-size: 14px;*/
+	font-weight: 400;
+	text-align: right;
+}
+
+.binfo table td{
+	padding: 5px 20px 5px 5px;
+}
+
+.mod2{
+	padding:10px 20px;
+}
+
+.mod3{padding:10px 0 10px 20px;}
+.mod3 li{position: relative;margin-bottom: 10px;padding:0 12px 0 60px;}
+.mod3 .step-line{position: absolute;left: 22px;top: 0;bottom: 6px;z-index: 2;margin-top: 28px;height: 72%;border: 2px solid #58dab8;}
+.mod3 .step-index{position: absolute;left: -56px;top: 0;width: 40px;height: 40px;line-height: 40px;background: url("../../resources/images/ico_circle.png") no-repeat;font-size: 14px;font-weight: bold;color: #1b8a6d;text-align: center;}
+.option-bar{position: relative;padding: 6px 0px 6px;height: 28px;line-height: 28px;}
+/* .step-action{float:right;} */
+.step-action{display: inline; padding-left: 8px;}
+.step-action i{display: inline-block;margin-left: 8px; cursor: pointer;vertical-align: middle;width: 26px;height: 26px;}
+.cont-qk{background-image: url("../../resources/images/ico_bp_total.png");background-position:0 0;}
+.remove_up{background-image: url("../../resources/images/ico_bp_total.png");background-position:0 -63px;}
+.remove_down{background-image: url("../../resources/images/ico_bp_total.png");background-position:0 26px;}
+.variable a{text-decoration:underline;font-size: 14px;}
+
+.mod4{padding:10px 20px;text-align:center}
+.mod4 a{width:100px; margin-right: 70px;}

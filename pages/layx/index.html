@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,minimum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+		<meta name="keywords" content="layx,弹窗,弹层,百小僧,百签,百签软件,layer,layui,windows弹窗,web弹窗" />
+		<meta name="description" content="Layx 新一代Web弹窗组件。" />
+		<title>Layx 新一代Web弹窗组件</title>
+		<link href="../../plugins/LayX/layx.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<h4 class="tip" name="打开一个字符串文本">打开一个字符串文本</h4>
+		<pre>layx.html('str','字符串文本','Hello Layx!');</pre>
+		<button class="run" onclick="dispaly()">运行</button>
+		<div class="demo">
+			<h4 class="tip" name="不允许拖出可视窗口">不允许拖出可视窗口</h4>
+			<pre>layx.iframe('noallowout','不允许拖出可视窗口','./iframe.html',{
+    moveLimit:{
+        leftOut: false, 
+        rightOut: false,
+        topOut: false,
+        bottomOut: false, 
+    }
+});</pre>
+			<button class="run" onclick="drag()">运行</button>
+		</div>
+		<script type="text/javascript" src="../../plugins/LayX/layx.min.js"></script>
+		<script>
+			function dispaly() {
+				layx.html('str', '字符串文本', 'Hello Layx!');
+			}
+			function drag() {
+				layx.iframe('noallowout','不允许拖出可视窗口','./iframe.html',{
+    moveLimit:{
+        leftOut: false, 
+        rightOut: false,
+        topOut: false,
+        bottomOut: false, 
+    }
+});
+			}
+		</script>
+	</body>
+
+</html>

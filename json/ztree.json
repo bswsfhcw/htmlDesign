@@ -1,0 +1,50 @@
+{
+	"list": [
+		{
+			"name": "XXX变",
+			"checked": false,
+			"icon": "/resource/images/topo/ipseg.png",
+			"children": [
+				{
+					"name": "01",
+					"children": [
+						{
+							"name": "开关",
+							"children": [
+								{
+									"name": "11"
+								}, {
+									"name": "12"
+								}
+							]
+						}, {
+							"name": "变压器",
+							"children": [
+								{
+									"name": "XXX变压器"
+								}, {
+									"name": "XXX变压器"
+								}
+							]
+						}
+					]
+				}, {
+					"name": "02"
+				}, {
+					"name": "03"
+				}, {
+					"name": "04"
+				}, {
+					"name": "变压器",
+					"children": [
+						{
+							"name": "XXX变压器"
+						}, {
+							"name": "XXX变压器"
+						}
+					]
+				}
+			]
+		}
+	]
+}

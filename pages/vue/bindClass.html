@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Class bind</title>
+<script type="text/javascript" src="/Vue/vue.js"></script>
+<!--  -->
+<style>
+.colorC {
+	color: red
+}
+
+.static {
+	font-size: 30px
+}
+
+.backC {
+	background-color: yellow;
+}
+</style>
+</head>
+<body>
+
+	<div id="root">
+		<!-- 我们可以传给 v-bind:class 一个对象，以动态地切换 class： -->
+		<div v-bind:class="{ colorC: isActive, 'backC': !hasback  }">顏色和背景都改变</div>
+		<!-- v-bind:class 指令也可以与普通的 class 属性共存 -->
+		<div class="static"
+			v-bind:class="{ colorC: isActive, 'backC': !hasback  }">顏色和背景都改变</div>
+		<div class="static"
+			v-bind:class="{ colorC: isActive, 'backC': hasback }">顏色和背景都改变</div>
+		<!-- 绑定的数据对象不必内联定义在模板里 -->
+		<div v-bind:class="classObject">
+			Class Data<span>顏色和背景都不改变</span></span>
+		</div>
+		<!-- 我们也可以在这里绑定一个返回对象的计算属性 -->
+		<div v-bind:class="classObjectC">顏色和背景都改变</div>
+		<!-- 我们可以把一个数组传给 v-bind:class，以应用一个 class 列表 -->
+		<div v-bind:class="[{colorC: isActive}, backC]">顏色变，背景不变</div>
+		<button @click="change1">改变颜色</button>
+		<button @click="change2">改变背景</button>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el : "#root",
+			data : {
+				isActive : true,
+				hasback : true,
+				classObject : {
+					colorC : true,
+					'backC' : true
+				},
+				activeClass : 'colorC',
+				errorClass : 'backC'
+			},
+			methods : {
+				change1 : function() {
+					this.isActive = !this.isActive
+				},
+				change2 : function() {
+					this.hasback = !this.hasback
+				}
+			},
+			computed : {
+				classObjectC : function() {
+					return {
+						colorC : this.isActive,
+						'backC' : this.hasback
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

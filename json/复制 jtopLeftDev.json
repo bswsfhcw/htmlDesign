@@ -1,0 +1,296 @@
+{
+	"list": [
+		{
+			"name": "出线开关",
+			"checked": false,
+			"icon": "../../images/topo/org.png",
+			"id": -1,
+			"pId": 0,
+			"children": [
+				{
+					"name": "XXX区",
+					"checked": false,
+					"icon": "../../images/topo/ipseg.png",
+					"id": 1,
+					"pId": -1,
+					"children": [
+						{
+							"name": "XXX变",
+							"checked": false,
+							"icon": "../../images/topo/ipseg.png",
+							"id": 11,
+							"pId": 1,
+							"children": [
+								{
+									"name": "001",
+									"checked": false,
+									"icon": "../../images/topo/ipseg.png",
+									"id": 111,
+									"pId": 11,
+									"children": null,
+									"flag": null,
+									"highlight": false,
+									"open": false,
+									"entityType": null,
+									"type": 1,
+									"parent": false
+								},{
+									"name": "002",
+									"checked": false,
+									"icon": "../../images/topo/ipseg.png",
+									"id": 111,
+									"pId": 11,
+									"children": null,
+									"flag": null,
+									"highlight": false,
+									"open": false,
+									"entityType": null,
+									"type": 1,
+									"parent": false
+								}
+							],
+							"flag": null,
+							"highlight": false,
+							"open": false,
+							"entityType": null,
+							"type": 1,
+							"parent": false
+						},{
+							"name": "XXX变",
+							"checked": false,
+							"icon": "../../images/topo/ipseg.png",
+							"id": 11,
+							"pId": 1,
+							"children": [
+								{
+									"name": "001",
+									"checked": false,
+									"icon": "../../images/topo/ipseg.png",
+									"id": 111,
+									"pId": 11,
+									"children": null,
+									"flag": null,
+									"highlight": false,
+									"open": false,
+									"entityType": null,
+									"type": 1,
+									"parent": false
+								},{
+									"name": "002",
+									"checked": false,
+									"icon": "../../images/topo/ipseg.png",
+									"id": 111,
+									"pId": 11,
+									"children": null,
+									"flag": null,
+									"highlight": false,
+									"open": false,
+									"entityType": null,
+									"type": 1,
+									"parent": false
+								}
+							],
+							"flag": null,
+							"highlight": false,
+							"open": false,
+							"entityType": null,
+							"type": 1,
+							"parent": false
+						}
+					],
+					"flag": null,
+					"highlight": false,
+					"open": false,
+					"entityType": null,
+					"type": 1,
+					"parent": false
+				}, {
+					"name": "XXX区",
+					"checked": false,
+					"icon": "../../images/topo/ipseg.png",
+					"id": 2,
+					"pId": -1,
+					"children": null,
+					"flag": null,
+					"highlight": false,
+					"open": false,
+					"entityType": null,
+					"type": 1,
+					"parent": false
+				}
+			],
+			"flag": null,
+			"highlight": false,
+			"open": false,
+			"entityType": null,
+			"type": null,
+			"parent": false
+		},{
+			"name": "其他开关",
+			"checked": false,
+			"icon": "../../images/topo/org.png",
+			"id": -1,
+			"pId": 0,
+			"children": [
+				{
+					"name": "XXX区",
+					"checked": false,
+					"icon": "../../images/topo/ipseg.png",
+					"id": 1,
+					"pId": -1,
+					"children": [
+						{
+							"name": "XXX变",
+							"checked": false,
+							"icon": "../../images/topo/ipseg.png",
+							"id": 11,
+							"pId": 1,
+							"children": [
+								{
+									"name": "001",
+									"checked": false,
+									"icon": "../../images/topo/ipseg.png",
+									"id": 111,
+									"pId": 11,
+									"children": null,
+									"flag": null,
+									"highlight": false,
+									"open": false,
+									"entityType": null,
+									"type": 1,
+									"parent": false
+								},{
+									"name": "002",
+									"checked": false,
+									"icon": "../../images/topo/ipseg.png",
+									"id": 111,
+									"pId": 11,
+									"children": null,
+									"flag": null,
+									"highlight": false,
+									"open": false,
+									"entityType": null,
+									"type": 1,
+									"parent": false
+								}
+							],
+							"flag": null,
+							"highlight": false,
+							"open": false,
+							"entityType": null,
+							"type": 1,
+							"parent": false
+						},{
+							"name": "XXX变",
+							"checked": false,
+							"icon": "../../images/topo/ipseg.png",
+							"id": 11,
+							"pId": 1,
+							"children": [
+								{
+									"name": "001",
+									"checked": false,
+									"icon": "../../images/topo/ipseg.png",
+									"id": 111,
+									"pId": 11,
+									"children": null,
+									"flag": null,
+									"highlight": false,
+									"open": false,
+									"entityType": null,
+									"type": 1,
+									"parent": false
+								},{
+									"name": "002",
+									"checked": false,
+									"icon": "../../images/topo/ipseg.png",
+									"id": 111,
+									"pId": 11,
+									"children": null,
+									"flag": null,
+									"highlight": false,
+									"open": false,
+									"entityType": null,
+									"type": 1,
+									"parent": false
+								}
+							],
+							"flag": null,
+							"highlight": false,
+							"open": false,
+							"entityType": null,
+							"type": 1,
+							"parent": false
+						}
+					],
+					"flag": null,
+					"highlight": false,
+					"open": false,
+					"entityType": null,
+					"type": 1,
+					"parent": false
+				}, {
+					"name": "XXX区",
+					"checked": false,
+					"icon": "../../images/topo/ipseg.png",
+					"id": 2,
+					"pId": -1,
+					"children": null,
+					"flag": null,
+					"highlight": false,
+					"open": false,
+					"entityType": null,
+					"type": 1,
+					"parent": false
+				}
+			],
+			"flag": null,
+			"highlight": false,
+			"open": false,
+			"entityType": null,
+			"type": null,
+			"parent": false
+		}, {
+			"name": "变压器列表",
+			"checked": false,
+			"icon": "../../images/topo/org.png",
+			"id": -2,
+			"pId": 0,
+			"children": [
+				{
+					"name": "变压器1",
+					"checked": false,
+					"icon": "../../images/topo/ipseg.png",
+					"id": 1,
+					"pId": null,
+					"children": null,
+					"flag": null,
+					"highlight": false,
+					"open": false,
+					"entityType": null,
+					"type": 2,
+					"parent": false
+				}, {
+					"name": "变压器2",
+					"checked": false,
+					"icon": "../../images/topo/ipseg.png",
+					"id": 2,
+					"pId": null,
+					"children": null,
+					"flag": null,
+					"highlight": false,
+					"open": false,
+					"entityType": null,
+					"type": 2,
+					"parent": false
+				}
+			],
+			"flag": null,
+			"highlight": false,
+			"open": false,
+			"entityType": null,
+			"type": null,
+			"parent": false
+		}
+	]
+}

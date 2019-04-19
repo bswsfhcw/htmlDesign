@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>AdminLTE 2 | Advanced form elements</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui_animation.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.4/themes/icon.css" rel="stylesheet" />
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/easyui_plus.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/insdep_theme_default.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.5.1/themes/insdep/icon.css" rel="stylesheet">
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css">
+		<!-- Ionicons -->
+		<link rel="stylesheet" href="../../dist/css/ionicons.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../../dist/css/skins/all-skins.min.css">
+		<!-- table style -->
+		<link rel="stylesheet"
+			href="../../plugins/bootstrap-table/bootstrap-editable.css">
+		<link rel="stylesheet"
+			href="../../plugins/bootstrap-table/bootstrap-table.min.css">
+		<!-- bootstrap-select style -->
+		<link rel="stylesheet"
+			href="../../plugins/bootstrap-select/bootstrap-select.css">
+		<!-- datepicker style -->
+		<link rel="stylesheet"
+			href="../../plugins/datepicker/bootstrap-datetimepicker.css">
+		<script src="../../js/common.js"></script>
+		<!--<link rel="stylesheet" href="../../plugins/zTree/zTreeStyle.css">-->
+		<link rel="stylesheet" href="../../plugins/zTree/zTreeStyle.css">
+		<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<!-- layer -->
+		<script src="../../plugins/layer-v3.1.1/layer/layer.js"></script>
+		<script src="../../plugins/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+		<style>
+			#contextmenu,
+			#contextmenu2,
+			#contextmenu3,
+			#device_type,
+			#link_type,
+			#align_type,
+			#contextmenu4,
+			#contextmenu5 {
+				border: 1px solid #aaa;
+				border-bottom: 0;
+				position: absolute;
+				width: 100px;
+			}
+			
+			#contextmenu ul,
+			#contextmenu2 ul,
+			#contextmenu3 ul,
+			#device_type ul,
+			#link_type ul,
+			#align_type ul,
+			#contextmenu4 ul,
+			#contextmenu5 ul {
+				list-style-type: none;
+				-webkit-margin-before: 0em;
+				-webkit-margin-after: 0em;
+				-webkit-margin-start: 0px;
+				-webkit-margin-end: 0px;
+				-webkit-padding-start: 40px;
+			}
+			
+			#contextmenu li,
+			#contextmenu2 li,
+			#contextmenu3 li,
+			#device_type li,
+			#link_type li,
+			#align_type li,
+			#contextmenu4 li,
+			#contextmenu5 li {
+				background: #eee;
+				height: 20px;
+				border-bottom: 1px solid #aaa;
+				padding: 0px 15px;
+				cursor: pointer;
+			}
+			
+			.jtopo_toolbar {
+				background-color: rgb(216, 231, 242);
+				width: 100%;
+				height: 32px;
+				padding-top: 6px;
+				padding-left: 10px;
+				padding-bottom: 3px;
+			}
+			
+			#content {
+				width: 100%;
+			}
+			
+			#drag_div {
+				overflow: hidden
+			}
+			
+			#drag_div>div {
+				width: 58px;
+				height: 60px;
+				background: #fff;
+				border-radius: 5px;
+				padding: 3px;
+				box-sizing: border-box;
+				overflow: hidden;
+				float: left;
+				margin: 5px;
+			}
+			
+			#drag_div>div img {
+				cursor: pointer;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.panel-header {
+				background: #d8e7f2;
+			}
+		</style>
+	</head>
+
+	<body class="easyui-layout">
+		<div data-options="region:'center',noheader:true," class="col-sm-12 col-md-12 col-ms-12">
+			<div id="equip_div">
+				<div style="padding-top: 15px; padding-left: 15px;" class="form-inline">
+					<div class="form-group">
+						<label role="button" id="cjrw_queryBtn" onclick="updateDevicesRack()" class="btn btn-sm btn-success"> <span
+						class="glyphicon glyphicon-pencil"></span>&nbsp;详情
+						</label>
+					</div>
+				</div>
+				<div style="display: none;" id="aaa"><a id="name">关于对公司业务部门组织架构进行重组的通知.pdf</a></div>
+			</div>
+		</div>
+		<!-- zTree -->
+		<script src="../../plugins/zTree/jquery.ztree.all-3.5.min.js"></script>
+		<script src="../../plugins/zTree/jquery.ztree.exhide-3.5.min.js"></script>
+		<script>
+			function updateDevicesRack() {//修改/查看屏柜信息跳转页面
+//				window.location.href =  "../office/pdf.html?fileName=ssdd";
+				window.open("../office/pdf.html","_blank");
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<title>AdminLTE 2 | Advanced form elements</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css">
+		<!-- Ionicons -->
+		<link rel="stylesheet" href="../../dist/css/ionicons.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../../dist/css/skins/all-skins.min.css">
+		<!-- table style -->
+		<link rel="stylesheet" href="../../plugins/bootstrap-table/bootstrap-editable.css">
+		<link rel="stylesheet" href="../../plugins/bootstrap-table/bootstrap-table.min.css">
+		<!-- bootstrap-select style -->
+		<link rel="stylesheet" href="../../plugins/bootstrap-select/bootstrap-select.css">
+		<!-- datepicker style -->
+		<link rel="stylesheet" href="../../plugins/datepicker/bootstrap-datetimepicker.css">
+		<!-- laydate -->
+		<link rel="stylesheet" href="../../plugins/laydate/skins/default/laydate.css">
+		<link rel="stylesheet" href="../../plugins/laydate/need/laydate.css">
+		<!-- layer style -->
+		<link rel="stylesheet" href="../../plugins/layer/skin/default/layer.css">
+		<!--zTree  -->
+		<link rel="stylesheet" href="../../plugins/zTree/zTreeStyle.css">
+		<!--easyui  -->
+		<link href="../../etl/jquery-easyui-1.5.1/themes/insdep/easyui.css" rel="stylesheet">
+		<link href="../../plugins/jquery-easyui-1.4/themes/icon.css" rel="stylesheet">
+		<!--bootstrap-fileinput  -->
+		<link href="../../plugins/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+		<style>
+			.fixed-table-container tbody .selected td {
+				background-color: #b7bbce;
+			}
+			
+			.bs-checkbox {
+				vertical-align: middle;
+			}
+			
+			.bs-checkbox input {
+				height: 17px;
+				width: 17px;
+			}
+			
+			.btn.btn-file {
+				width: 80px;
+			}
+			/* 表单工具栏样式 */
+			
+			.columns.columns-right.btn-group.pull-right {
+				margin-top: 30px;
+			}
+		</style>
+	</head>
+
+	<body class="easyui-layout">
+		<div data-options="region:'center',noheader:true," class="col-sm-12 col-md-12 col-ms-12">
+			<div id="equip_div">
+				<div style="padding-top: 15px; padding-left: 15px;" class="form-inline">
+					<div class="form-group">
+						<label role="button" id="cjrw_queryBtn" onclick="addSwitch()" class="btn btn-sm btn-success"> <span
+						class="glyphicon glyphicon-plus"></span>&nbsp;添加
+					</label>
+					</div> 
+					<div class="form-group">
+						<label role="button" id="cjrw_queryBtn" onclick="updateSwitch()" class="btn btn-sm btn-success"> <span
+						class="glyphicon glyphicon-pencil"></span>&nbsp;详情
+					</label>
+					</div>
+					<div class="form-group">
+						<label role="button" id="cjrw_queryBtn" onclick="deleteSwitchs()" class="btn btn-sm btn-success"> <span
+						class="glyphicon glyphicon-minus"></span>&nbsp;删除
+					</label>
+					</div>
+				</div>
+				<div id="equip_toolbar" class="toolbar" style="padding-top: 15px;">
+					<form class="form-inline" role="form" style="float: left; width: 100%" method="post" id="pg_queryForm" autocomplete="off">
+						<div class="form-group">
+							<label for="height" class="control-label col-sm-4">类型:</label>
+							<div class ="col-sm-5">
+								<select class="form-control" name= "typeQuery" id="typeQuery" onchange="changeConditionQuery()">
+							      <option value="-1">请选择开关类型</option>
+							      <option value="0">出线开关</option>
+							      <option value="1">联络开关</option>
+							    </select>
+			    			</div>
+						</div>
+						<div class="form-group">
+							<label for="fac" class="control-label col-sm-4">所属厂站:</label>
+							<div class ="col-sm-5">
+				    			<select class="form-control" name= "facIdQuery" id="facIdQuery" onchange="changeConditionQuery()">
+							      <option value="0">请选择所属厂站...</option>
+							    </select>
+						    </div>
+						</div>
+						<div class="form-group">
+							<label class="input-sm">名称:</label>
+							<input id="nameQuery" type="text" style="width: 150px; height: 35px;" />
+						</div>
+						<div class="form-group" style="padding-bottom: 5px;margin-left: 20px;">
+							<button type="button" onclick="query()" class="btn btn-md btn-success">
+							<span class="glyphicon glyphicon-search"></span>&nbsp;查询
+						</button>
+						</div>
+					</form>
+				</div>
+				<table id="switchsTable">
+				</table>
+			</div>
+		</div>
+		<div style="display: none;OVERFLOW-X:hidden;" id="add_switch" align="center">
+			<form class="form-horizontal" role="form" style="vertical-align: middle;margin-top: 15px;"> 
+				<div class="form-group">
+					<label for="height" class="control-label col-sm-4">开关类型:</label>
+					<div class ="col-sm-5">
+						<select class="form-control" name= "typeAdd" id="typeAdd" onchange="changeTypeIdAdd()">
+					      <option value="0">出线开关</option>
+					      <option value="1">联络开关</option>
+					    </select>
+	    			</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label front-size">名称:</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="nameAdd" placeholder="请输入名称">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="fac" class="control-label col-sm-4">所属厂站:</label>
+					<div class ="col-sm-5">
+		    			<select class="form-control" name= "facIdAdd" id="facIdAdd" onchange="changeFacIdAdd()">
+					      <option value="0">请选择厂站...</option>
+					    </select>
+				    </div>
+				</div>
+				<div class="form-group switchExtend">
+					<label for="fac" class="control-label col-sm-4">出线开关:</label>
+					<div class ="col-sm-5">
+		    			<select class="form-control" name= "parentIdAdd" id="parentIdAdd" onchange="changeParentIdAdd()">
+					      <option value="0">请选择出线开关...</option>
+					    </select>
+				    </div>
+				</div>
+				<div class="form-group switchExtend">
+					<label class="col-sm-4 control-label front-size">所属线路:</label>
+					<div class ="col-sm-5">
+		    			<select class="form-control" name= "lineIdAdd" id="lineIdAdd">
+					      <option value="0">请选择线路...</option>
+					    </select>
+				    </div>
+				</div>
+			</form>
+		</div>
+		<script src="../../js/common.js"></script>
+		<!-- jQuery 2.2.3 -->
+		<script src="../../plugins/jQuery/jquery-2.2.4.js"></script>
+		<!--Jtopo  -->
+		<script src="../../plugins/Jtopo/jtopo-0.4.8-min.js"></script>
+		<script src="../../plugins/Jtopo/zJTopo.js"></script>
+		<!-- Bootstrap 3.3.6 -->
+		<script src="../../bootstrap/js/bootstrap.js"></script>
+		<!--bootstrap-fileinput -->
+		<script src="../../plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+		<script src="../../plugins/bootstrap-fileinput/js/locales/zh.js"></script>
+		<!--tabs-->
+		<script src="../../dist/js/app_iframe.js"></script>
+		<!--tables-->
+		<script src="../../plugins/bootstrap-table/bootstrap-editable.js"></script>
+		<script src="../../plugins/bootstrap-table/bootstrap-table.js"></script>
+		<script src="../../plugins/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+		<script src="../../plugins/bootstrap-table/bootstrap-table-export.js"></script>
+		<script src="../../plugins/bootstrap-table/tableExport.js"></script>
+		<!-- Slimscroll -->
+		<script src="../../plugins/slimScroll/jquery.slimscroll.js"></script>
+		<!-- FastClick -->
+		<script src="../../plugins/fastclick/fastclick.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="../../dist/js/demo.js"></script>
+		<!-- bootstrap-select -->
+		<script src="../../plugins/bootstrap-select/bootstrap-select.js"></script>
+		<!-- bootstrap-datepicker -->
+		<script src="../../plugins/datepicker/bootstrap-datetimepicker.js"></script>
+		<script src="../../plugins/datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+		<!-- layer -->
+		<script src="../../plugins/layer/layer.js"></script>
+		<!-- laydate -->
+		<script src="../../plugins/laydate/laydate.js"></script>
+		<!-- zTree -->
+		<script src="../../plugins/zTree/jquery.ztree.all-3.5.min.js"></script>
+		<script src="../../plugins/zTree/jquery.ztree.exhide-3.5.min.js"></script>
+		<!--easyui  -->
+		<script src="../../etl/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+		<script src="../../etl/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js"></script>
+		<script src="../../plugins/jquery-easyui-1.4/plugin_easyui.js"></script>
+		<!-- highcharts -->
+		<script src="../../plugins/highcharts/highcharts.js"></script>
+		<script src="../../plugins/highcharts/exporting.js"></script>
+		<script src="../../plugins/highcharts/highcharts-zh_CN.js"></script>
+
+		<!-- intervalInfo -->
+		<script src="../../js/cztz/switch.js"></script>
+
+	</body>
+
+</html>

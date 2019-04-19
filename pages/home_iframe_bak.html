@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>AdminLTE 2 | Advanced form elements</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="../dist/css/font-awesome.min.css">
+		<!-- daterange picker -->
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap-datepicker.min.css">
+		<style>
+			.chart {
+				height: 200px;
+				min-widthwidth: 100px;
+				margin: 0px;
+				padding: 0px;
+			}
+		</style>
+	</head>
+
+	<body class="hold-transition skin-blue sidebar-mini">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+       			 <small></small>
+      		</h1>
+		</section>
+		<!-- Main content -->
+		<section class="content">
+			<div class="row" style="border:1px solid #ddd;margin-top: 0px;">
+				<div class="col-md-12">
+					<ol class="breadcrumb">
+						包个数实时趋势
+					</ol>
+					<div class="chart" id="chartPacketCountTrend"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4" style="border:1px solid #ddd;">
+					<ol class="breadcrumb">
+						包大小区间分布
+					</ol>
+					<div class="chart" id="chartPacketSzie"></div>
+				</div>
+				<div class="col-md-8" style="border:1px solid #ddd;">
+					<ol class="breadcrumb">
+						包大小区间月度分布
+					</ol>
+					<div class="chart" id="chartPacketCountMonth"></div>
+
+				</div>
+			</div>
+		</section>
+		<!-- /.content -->
+
+		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<script src="../dist/js/echarts.min.js"></script>
+		<script src="../bootstrap/js/echarts-gl.min.js"></script>
+		<script src="../bootstrap/js/bootstrap-datepicker.min.js"></script>
+		<script>
+			optionPacketSzie = {
+				color: ['#3398DB'],
+				grid: [{
+				}],
+				xAxis: [{
+					type: 'category',
+					data: ['0-60', '60-120', '120-180', '180-240', '240-300', '300-360', '360-420', '其他'],
+					axisTick: {
+						alignWithLabel: true
+					}
+				}],
+				yAxis: [{
+					type: 'value'
+				}],
+				series: [{
+					type: 'bar',
+					barWidth: '60%',
+					data: [10, 52, 200, 334, 390, 200, 100, 10]
+				}]
+			};
+			optionPacketCountTrend = {
+				grid: [{
+					top: 5
+				}],
+				xAxis: {
+					type: 'category',
+					data: ['09:30:00', '09:30:05', '09:30:10', '09:30:15', '09:30:20', '09:30:25', '09:30:30', '09:30:35',
+						'09:30:40', '09:30:45', '09:30:50', '09:30:55', '09:31:00', '09:31:05', '09:31:10', '09:31:15', '09:31:20', '09:31:25', '09:31:30'
+					]
+				},
+				yAxis: {
+					type: 'value'
+				},
+				series: [{
+					data: [220, 182, 191, 234, 290, 330, 310, 182, 191, 234, 290, 330, 310, 182, 191, 234, 290, 330, 310],
+					type: 'line',
+					smooth: true
+				}]
+			};
+
+			var months = ['1', '2', '3', '4', '5', '6',
+				'7', '8', '9', '10', '11', '12'
+			];
+			var packetSizes = ['0-60', '60-120', '120-180',
+				'180-240', '240-300', '300-360', '360-420', '420-'
+			];
+
+			var data = [
+				[0, 0, 5],
+				[0, 1, 1],
+				[0, 2, 0],
+				[0, 3, 0],
+				[0, 4, 0],
+				[0, 5, 0],
+				[0, 6, 0],
+				[0, 7, 0],
+				[0, 8, 0],
+				[0, 9, 0],
+				[0, 10, 0],
+				[0, 11, 2],
+				[1, 0, 7],
+				[1, 1, 0],
+				[1, 2, 0],
+				[1, 3, 0],
+				[1, 4, 0],
+				[1, 5, 0],
+				[1, 6, 0],
+				[1, 7, 0],
+				[1, 8, 0],
+				[1, 9, 0],
+				[1, 10, 5],
+				[1, 11, 2],
+				[2, 0, 1],
+				[2, 1, 1],
+				[2, 2, 0],
+				[2, 3, 0],
+				[2, 4, 0],
+				[2, 5, 0],
+				[2, 6, 0],
+				[2, 7, 0],
+				[2, 8, 0],
+				[2, 9, 0],
+				[2, 10, 3],
+				[2, 11, 2],
+				[3, 0, 7],
+				[3, 1, 3],
+				[3, 2, 0],
+				[3, 3, 0],
+				[3, 4, 0],
+				[3, 5, 0],
+				[3, 6, 0],
+				[3, 7, 0],
+				[3, 8, 1],
+				[3, 9, 0],
+				[3, 10, 5],
+				[3, 11, 4],
+				[4, 0, 1],
+				[4, 1, 3],
+				[4, 2, 0],
+				[4, 3, 0],
+				[4, 4, 0],
+				[4, 5, 1],
+				[4, 6, 0],
+				[4, 7, 0],
+				[4, 8, 0],
+				[4, 9, 2],
+				[4, 10, 4],
+				[4, 11, 4],
+				[5, 0, 2],
+				[5, 1, 1],
+				[5, 2, 0],
+				[5, 3, 3],
+				[5, 4, 0],
+				[5, 5, 0],
+				[5, 6, 0],
+				[5, 7, 0],
+				[5, 8, 2],
+				[5, 9, 0],
+				[5, 10, 4],
+				[5, 11, 1],
+				[6, 0, 1],
+				[6, 1, 0],
+				[6, 2, 0],
+				[6, 3, 0],
+				[6, 4, 0],
+				[6, 5, 0],
+				[6, 6, 0],
+				[6, 7, 0],
+				[6, 8, 0],
+				[6, 9, 0],
+				[6, 10, 1],
+				[6, 11, 0]
+			];
+			optionPacketCountMonth = {
+				tooltip: {
+
+					formatter: function(data) {
+						var month = optionPacketCountMonth.xAxis3D.data[data.value[0]];
+						var packetSize = optionPacketCountMonth.yAxis3D.data[data.value[1]];
+						//						console.log(JSON.stringify(data));
+						return "月份:" + month + "</br>" + "包大小区间:" + packetSize + "</br>" + "包个数:" + data.value[2]; //将小数转化为百分数显示
+					}
+				},
+				visualMap: {
+					max: 10,
+					inRange: {
+						color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+					}
+				},
+				xAxis3D: {
+					type: 'category',
+					data: months
+				},
+				yAxis3D: {
+					type: 'category',
+					data: packetSizes
+				},
+				zAxis3D: {
+					type: 'value'
+				},
+				grid3D: {
+					boxWidth: 300,
+					boxDepth: 80,
+					viewControl: {
+						//alpha:上下旋转角度,视角绕x轴旋转,针对上下视角;②beta:左右旋转角度,视角绕y轴旋转,针对左右视角。
+						alpha: 20,
+						beta: 0
+					},
+					light: {
+						main: {
+							intensity: 1.2,
+							shadow: true
+						},
+						ambient: {
+							intensity: 0.3
+						}
+					}
+				},
+				series: [{
+					type: 'bar3D',
+					data: data.map(function(item) {
+						return {
+							value: [item[1], item[0], item[2]],
+						}
+					}),
+					shading: 'lambert',
+
+					label: {
+						textStyle: {
+							fontSize: 16,
+							borderWidth: 1
+						}
+					},
+
+					emphasis: {
+						label: {
+							textStyle: {
+								fontSize: 20,
+								color: '#900'
+							}
+						},
+						itemStyle: {
+							color: '#900'
+						}
+					}
+				}]
+			}
+		</script>
+		<script>
+			var byId = function(id) {
+				return document.getElementById(id);
+			};
+			var chartPacketSzie = echarts.init(byId('chartPacketSzie'));
+			chartPacketSzie.setOption(optionPacketSzie);
+			var chartPacketCountTrend = echarts.init(byId('chartPacketCountTrend'));
+			chartPacketCountTrend.setOption(optionPacketCountTrend);
+			var chartPacketCountMonth = echarts.init(byId('chartPacketCountMonth'));
+			chartPacketCountMonth.setOption(optionPacketCountMonth);
+		</script>
+		<script>
+			$('#qBeginTime').datepicker({
+				todayBtn: "linked",
+				autoclose: true,
+				todayHighlight: true,
+				endDate: new Date()
+			}).on('changeDate', function(e) {
+				var startTime = e.date;
+				$('#qEndTime').datepicker('setStartDate', startTime);
+			});
+			//结束时间：
+			$('#qEndTime').datepicker({
+				todayBtn: "linked",
+				autoclose: true,
+				todayHighlight: true,
+				endDate: new Date()
+			}).on('changeDate', function(e) {
+				var endTime = e.date;
+				$('#qBeginTime').datepicker('setEndDate', endTime);
+			});
+		</script>
+	</body>
+
+</html>

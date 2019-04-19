@@ -1,0 +1,211 @@
+	<!DOCTYPE html>
+	<html>
+	
+		<head>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<title>AdminLTE 2 | Advanced form elements</title>
+			<!-- Tell the browser to be responsive to screen width -->
+			<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+			<!-- Bootstrap 3.3.6 -->
+			<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+			<!-- Font Awesome -->
+			<link rel="stylesheet" href="../../dist/css/font-awesome.min.css">
+			<!-- daterange picker -->
+			<link rel="stylesheet" href="../../bootstrap/css/bootstrap-datepicker.min.css">
+			<style>
+				.chart {
+					height: 280px;
+					min-widthwidth: 100px;
+					margin: 0px;
+					padding: 0px;
+				}
+			</style>
+		</head>
+	
+		<body class="hold-transition skin-blue sidebar-mini">
+			<!-- Content Header (Page header) -->
+			<!--		<section class="content-header">
+				<h1>
+	       			 <small>1111</small>
+	      		</h1>
+			</section>-->
+			<!-- Main content -->
+			<section class="content">
+				<!--<div class="row" style="padding-left: 10px;padding-bottom: 15px;">
+					<span style="font-size:14px;">
+									<div class="col-md-6 cy-text-right-md">
+										<div class="form-inline">
+											<div class="form-group cy-mar-ver-s">
+												<span class="cy-pad-hor-s"><h4>时间范围 :</h2> </span>
+				</div>
+				<div class="input-daterange input-group" id="datepicker">
+					<input type="text" class="form-control" name="start" id="qBeginTime" />
+					<span class="input-group-addon">至</span>
+					<input type="text" class="form-control" name="end" id="qEndTime" />
+				</div>
+				<div class="form-group cy-mar-ver-s">
+					<button class="btn btn-primary cy-pad-rgt-s" onclick="javascript:doQuery();" type="button">搜索</button>
+				</div>
+				</div>
+				</div>
+				</span>
+				</div>-->
+				<div class="row">
+					<div class="col-md-12" style="border:1px solid #ddd;">
+						<ol class="breadcrumb">
+							全局-TOP端口总流量(数据包)
+						</ol>
+						<div class="chart" id="chartTcpPortAll"></div>
+					</div>
+				</div>
+				<div class="row" style="border:1px solid #ddd;margin-top: 5px;">
+					<div class="col-md-6">
+						<ol class="breadcrumb">
+							全局-TOP端口总流量-发(数据包)
+						</ol>
+						<div class="chart" id="chartTcpPortAllTx"></div>
+					</div>
+					<div class="col-md-6">
+						<ol class="breadcrumb">
+							全局-TOP端口总流量-收(数据包)
+						</ol>
+						<div class="chart" id="chartTcpPortAllRc"></div>
+					</div>
+				</div>
+			</section>
+			<!-- /.content -->
+	
+			<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+			<script src="../../bootstrap/js/bootstrap.min.js"></script>
+			<script src="../../dist/js/echarts.min.js"></script>
+			<script src="../../bootstrap/js/bootstrap-datepicker.min.js"></script>
+			<script>
+				optionTcpPortAll = {
+					color: ['#3398DB'],
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: { // 坐标轴指示器，坐标轴触发有效
+							type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+						}
+					},
+					grid: {
+						left: '3%',
+						right: '4%',
+						bottom: '3%',
+						containLabel: true
+					},
+					xAxis: [{
+						type: 'category',
+						data: ['2404', '100', '555', '1234', '1367', '556', '1111', '100', '555', '1234', '1367', '556', '1111','44'],
+						axisTick: {
+							alignWithLabel: true
+						}
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: [{
+						type: 'bar',
+						barWidth: '60%',
+						data: [1000,980, 900, 700,400, 300,200, 170,100,80, 40,30, 20,2]
+					}]
+				};
+	
+				optionTcpPortAllTx = {
+					color: ['#3398DB'],
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: { // 坐标轴指示器，坐标轴触发有效
+							type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+						}
+					},
+					grid: {
+						left: '3%',
+						right: '4%',
+						bottom: '3%',
+						containLabel: true
+					},
+					xAxis: [{
+						type: 'category',
+						data: ['2404', '100', '555', '1234', '1367', '556', '1111'],
+						axisTick: {
+							alignWithLabel: true
+						}
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: [{
+						type: 'bar',
+						barWidth: '60%',
+						data: [1000, 900, 400, 200, 100, 40, 20]
+					}]
+				};
+	
+				optionTcpPortAllRc = {
+					color: ['#3398DB'],
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: { // 坐标轴指示器，坐标轴触发有效
+							type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+						}
+					},
+					grid: {
+						left: '3%',
+						right: '4%',
+						bottom: '3%',
+						containLabel: true
+					},
+					xAxis: [{
+						type: 'category',
+						data: ['2404', '100', '555', '1234', '1367', '556', '1111'],
+						axisTick: {
+							alignWithLabel: true
+						}
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: [{
+						type: 'bar',
+						barWidth: '60%',
+						data: [1000, 900, 400, 200, 100, 40, 20]
+					}]
+				};
+			</script>
+			<script>
+				var byId = function(id) {
+					return document.getElementById(id); 
+				};
+				var chartTcpPortAll = echarts.init(byId('chartTcpPortAll'));
+				chartTcpPortAll.setOption(optionTcpPortAll);
+				var chartTcpPortAllTx = echarts.init(byId('chartTcpPortAllTx'));
+				chartTcpPortAllTx.setOption(optionTcpPortAllTx);
+				var chartTcpPortAllRc = echarts.init(byId('chartTcpPortAllRc'));
+				chartTcpPortAllRc.setOption(optionTcpPortAllRc);
+			</script>
+			<script>
+				$('#qBeginTime').datepicker({
+					todayBtn: "linked",
+					autoclose: true,
+					todayHighlight: true,
+					endDate: new Date()
+				}).on('changeDate', function(e) {
+					var startTime = e.date;
+					$('#qEndTime').datepicker('setStartDate', startTime);
+				});
+				//结束时间：
+				$('#qEndTime').datepicker({
+					todayBtn: "linked",
+					autoclose: true,
+					todayHighlight: true,
+					endDate: new Date()
+				}).on('changeDate', function(e) {
+					var endTime = e.date;
+					$('#qBeginTime').datepicker('setEndDate', endTime);
+				});
+			</script>
+		</body>
+	
+	</html>
